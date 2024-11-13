@@ -1,4 +1,4 @@
-module customdatetime
+module github.com/mmussett/flogo-extensions/customdatetime
 
 go 1.23.2
 
