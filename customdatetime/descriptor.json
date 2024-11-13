@@ -1,0 +1,21 @@
+{
+    "name": "customdatetime",
+    "type": "flogo:function",
+    "version": "0.0.1a",
+    "title": "customdatetime",
+    "description": "Executes an XPATH statement against an XML String and returns the results",
+    "functions": [{
+            "name": "getTimeInMillis",
+            "description": "Returns the time in milliseconds",
+            "example": "customdatetime.getTimeInMillis()",
+            "args": [],
+            "return": {
+                "name": "getTimeInMillis",
+                "type": "string"
+            },
+            "display": {
+                "visible": true
+            }
+        }
+    ]
+}
