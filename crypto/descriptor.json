@@ -1,0 +1,104 @@
+{
+    "name": "crypto",
+    "type": "flogo:function",
+    "version": "0.0.1a",
+    "title": "crypto",
+    "description": "Provides cryptographic functionality for Flogo",
+    "functions": [{
+            "name": "aesEncrypt",
+            "description": "Encrypt a string using AES encryption",
+            "example": "crypto.aesEncrypt()",
+            "args": [
+                {
+                    "name": "inputString",
+                    "type": "string",
+                    "description": "The string to be encrypted"
+                },
+                {
+                    "name": "key",
+                    "type": "string",
+                    "description": "The encryption key"
+                }
+            ],
+            "return": {
+                "name": "encryptedString",
+                "type": "string"
+            },
+            "display": {
+                "visible": true
+            }
+        },
+        {
+            "name": "aesDecrypt",
+            "description": "Decrypt a string using AES decryption",
+            "example": "crypto.aesDecrypt()",
+            "args": [
+                {
+                    "name": "encryptedString",
+                    "type": "string",
+                    "description": "The string to be decrypted"
+                },
+                {
+                    "name": "key",
+                    "type": "string",
+                    "description": "The decryption key"
+                }
+            ],
+            "return": {
+                "name": "decryptedString",
+                "type": "string"
+            },
+            "display": {
+                "visible": true
+            }
+        },
+        {
+        "name": "rsaEncrypt",
+        "description": "Encrypt a string using RSA encryption",
+        "example": "crypto.rsaEncrypt()",
+        "args": [
+            {
+                "name": "inputString",
+                "type": "string",
+                "description": "The string to be encrypted"
+            },
+            {
+                "name": "key",
+                "type": "string",
+                "description": "The encryption key"
+            }
+        ],
+        "return": {
+            "name": "encryptedString",
+            "type": "string"
+        },
+        "display": {
+            "visible": true
+        }
+    },
+    {
+        "name": "rsaDecrypt",
+        "description": "Decrypt a string using RSA decryption",
+        "example": "crypto.rsaDecrypt()",
+        "args": [
+            {
+                "name": "encryptedString",
+                "type": "string",
+                "description": "The string to be decrypted"
+            },
+            {
+                "name": "key",
+                "type": "string",
+                "description": "The decryption key"
+            }
+        ],
+        "return": {
+            "name": "decryptedString",
+            "type": "string"
+        },
+        "display": {
+            "visible": true
+        }
+    }
+    ]
+}
