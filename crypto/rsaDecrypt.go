@@ -23,7 +23,7 @@ func (rsaDecryptFn) Name() string {
 
 // Sig returns the function signature
 func (rsaDecryptFn) Sig() (paramTypes []data.Type, isVariadic bool) {
-	return []data.Type{}, false
+	return []data.Type{data.TypeString, data.TypeString}, false
 }
 
 
