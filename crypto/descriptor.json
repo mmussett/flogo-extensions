@@ -3,6 +3,7 @@
     "type": "flogo:function",
     "version": "0.0.1a",
     "title": "crypto",
+    "author": "Mark Mussett",
     "description": "Provides cryptographic functionality for Flogo",
     "functions": [{
             "name": "aesEncrypt",
@@ -10,7 +11,7 @@
             "example": "crypto.aesEncrypt()",
             "args": [
                 {
-                    "name": "inputString",
+                    "name": "plainText",
                     "type": "string",
                     "description": "The string to be encrypted"
                 },
@@ -21,7 +22,7 @@
                 }
             ],
             "return": {
-                "name": "encryptedString",
+                "name": "cipherText",
                 "type": "string"
             },
             "display": {
@@ -34,7 +35,7 @@
             "example": "crypto.aesDecrypt()",
             "args": [
                 {
-                    "name": "encryptedString",
+                    "name": "cipherText",
                     "type": "string",
                     "description": "The string to be decrypted"
                 },
@@ -45,7 +46,7 @@
                 }
             ],
             "return": {
-                "name": "decryptedString",
+                "name": "plainText",
                 "type": "string"
             },
             "display": {
@@ -58,18 +59,18 @@
         "example": "crypto.rsaEncrypt()",
         "args": [
             {
-                "name": "inputString",
+                "name": "plainText",
                 "type": "string",
                 "description": "The string to be encrypted"
             },
             {
-                "name": "key",
+                "name": "publicKey",
                 "type": "string",
                 "description": "The encryption key"
             }
         ],
         "return": {
-            "name": "encryptedString",
+            "name": "cipherText",
             "type": "string"
         },
         "display": {
@@ -82,18 +83,18 @@
         "example": "crypto.rsaDecrypt()",
         "args": [
             {
-                "name": "encryptedString",
+                "name": "cipherText",
                 "type": "string",
                 "description": "The string to be decrypted"
             },
             {
-                "name": "key",
+                "name": "privateKey",
                 "type": "string",
                 "description": "The decryption key"
             }
         ],
         "return": {
-            "name": "decryptedString",
+            "name": "plainText",
             "type": "string"
         },
         "display": {
