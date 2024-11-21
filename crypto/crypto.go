@@ -78,18 +78,22 @@ func checksum(data []byte) string {
 
 
 // RsaEncrypt ...
-func rsaEncrypt(data []byte, publicKey []byte) ([]byte, error) {
+func rsaEncrypt(data []byte, publicKey []byte) (string, error) {
 	block, _ := pem.Decode(publicKey)
 	if block == nil {
-		return nil, errors.New("Public Key Error")
+		return "", errors.New("Public Key Error")
 	}
 
 	pubInterface, err := x509.ParsePKIXPublicKey(block.Bytes)
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 	pub := pubInterface.(*rsa.PublicKey)
-	return rsa.EncryptPKCS1v15(rand.Reader, pub, data)
+	enc, err := rsa.EncryptPKCS1v15(rand.Reader, pub, data)
+	if err!= nil {
+        return "", err
+    }
+	return base64.StdEncoding.EncodeToString(enc), nil
 }
 
 // RsaDecrypt ...
