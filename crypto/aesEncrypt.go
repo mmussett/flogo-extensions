@@ -23,7 +23,7 @@ func (aesEncryptFn) Name() string {
 
 // Sig returns the function signature
 func (aesEncryptFn) Sig() (paramTypes []data.Type, isVariadic bool) {
-	return []data.Type{}, false
+	return []data.Type{data.TypeString, data.TypeString}, false
 }
 
 // Eval executes the function
