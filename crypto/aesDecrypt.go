@@ -18,7 +18,7 @@ type aesDecryptFn struct {
 
 // Name returns the name of the function
 func (aesDecryptFn) Name() string {
-	return "aesEncrypt"
+	return "aesDecrypt"
 }
 
 // Sig returns the function signature
