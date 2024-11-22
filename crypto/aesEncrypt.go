@@ -29,10 +29,12 @@ func (aesEncryptFn) Sig() (paramTypes []data.Type, isVariadic bool) {
 // Eval executes the function
 func (aesEncryptFn) Eval(params ...interface{}) (interface{}, error) {
 
+
 	if logger.DebugEnabled() {
 		logger.Debugf("Entering function aesEncrypt ()")
 	}
 
+	
 	plaintext, err := coerce.ToString(params[0])
 	if err != nil {
 		return nil, fmt.Errorf("crypto.aesEncrypt function first parameter [%+v] must be string", params[0])
