@@ -6,7 +6,6 @@ import (
 	"github.com/project-flogo/core/data"
 	"github.com/project-flogo/core/data/coerce"
 	"github.com/project-flogo/core/data/expression/function"
-
 )
 
 func init() {
@@ -25,7 +24,6 @@ func (aesDecryptFn) Name() string {
 func (aesDecryptFn) Sig() (paramTypes []data.Type, isVariadic bool) {
 	return []data.Type{data.TypeString, data.TypeString}, false
 }
-
 
 // Eval executes the function
 func (aesDecryptFn) Eval(params ...interface{}) (interface{}, error) {
@@ -48,7 +46,6 @@ func (aesDecryptFn) Eval(params ...interface{}) (interface{}, error) {
 	if err != nil {
 		return nil, err
 	}
-
 
 	if logger.DebugEnabled() {
 		logger.Debugf("Exiting function aesEncrypt (eval)")
