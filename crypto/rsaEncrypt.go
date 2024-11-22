@@ -6,7 +6,6 @@ import (
 	"github.com/project-flogo/core/data"
 	"github.com/project-flogo/core/data/coerce"
 	"github.com/project-flogo/core/data/expression/function"
-
 )
 
 func init() {
@@ -43,15 +42,17 @@ func (rsaEncryptFn) Eval(params ...interface{}) (interface{}, error) {
 		return nil, fmt.Errorf("crypto.rsaEncrypt function second parameter [%+v] must be string", params[1])
 	}
 
+
 	ciphertext, err := rsaEncrypt([]byte(plaintext), []byte(key))
 	if err != nil {
 		return nil, err
 	}
 
-
 	if logger.DebugEnabled() {
 		logger.Debugf("Exiting function rsaEncrypt()")
 	}
 
-	return ciphertext, nil
+
+	encCiphertext := encodeBase64(ciphertext)
+	return encCiphertext, nil
 }
