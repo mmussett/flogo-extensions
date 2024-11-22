@@ -1,16 +1,18 @@
 package crypto
 
 import (
-	"github.com/stretchr/testify/assert"
+	"fmt"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 var (
-	key              = []byte("1234543444555666")
-	plaintext        = "This is a long text which will be encrypted"
+	key              = "1234543444555666"
+	plaintext        = "Hello, World!"
 	encryptedData    = "g6Fj2gAwOKX9QpLyER/5yhLh8it7sw8wxOrlFe2o/AHDd+N/HequAMJXA2Pau2CwhXB68rRvoWmwZaukNK5L2zp3RWbUxd+UDaFroA=="
 	rsaEncryptedData = "nKVVuCY7bPzNvfCx+NCa/3QYiliinc2Jhuvf7ZQTc87ZvcDOWiQwvXfkicLLv9WqqjmvzxWGTqxeJvN9Gw9SzRUAadgeQapS4VRR5VoTYsIEs8ye9yyyWzeAf6tp1bsj6GclE3MozPYcC4GMeeyGsrVb1JReNboUxZYOYd5wdqAwwG9MJtaq7pO2rFE7vkP3TGBlP53DzjAttFTilGV/2IbvyRmGUZsuyrKc4nJt+wvzPUVulzMcnqD9wRBPkAJ66SnxK/floYeCLt7U006om+xr19R+JKjLtzO9SDy8YNsv5++jUYhKcjfcts3BSExqO+HhJ5inswr9uRsOvJrvPg=="
-	pubKey           = []byte(`-----BEGIN PUBLIC KEY-----
+	pubKey           = `-----BEGIN PUBLIC KEY-----
 MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsGPLhjbq7qy4IP7C6g5S
 698/QLgIcXhBsQ6ZbvjmVBkLE+gh4AImMUjtvcTL/783snb4irWvFlJSzfwWmF8b
 V0+swnaxf1rddlAWwE8KrBkIVXFWa/kTQ/ma6Tc3WY3/rJnb3c81Mf9guG9d7zHc
@@ -18,8 +20,8 @@ VjvjnQN/GrRn4KX/YVeLtqrih342HncfqKmGfyRgD/hwY/oHdD/sjOEEXBVe1Jqi
 bHGAHFzoNbAmE9XsZ/QQ9pQuZl6+o6iLeV5satXYWVQffJEf6b4x3ptJ5Vc204ni
 QXgIwNyaBBp98cH6zvBNlZcRb5pqFLEXCmeXkDF1rxharVR8rOUX5JB2w7+oQ5yc
 lQIDAQAB
------END PUBLIC KEY-----`)
-	privateKey = []byte(`-----BEGIN RSA PRIVATE KEY-----
+-----END PUBLIC KEY-----`
+	privateKey = `-----BEGIN RSA PRIVATE KEY-----
 MIIEpAIBAAKCAQEAsGPLhjbq7qy4IP7C6g5S698/QLgIcXhBsQ6ZbvjmVBkLE+gh
 4AImMUjtvcTL/783snb4irWvFlJSzfwWmF8bV0+swnaxf1rddlAWwE8KrBkIVXFW
 a/kTQ/ma6Tc3WY3/rJnb3c81Mf9guG9d7zHcVjvjnQN/GrRn4KX/YVeLtqrih342
@@ -45,29 +47,34 @@ Q2I5TSQu+3EMdr12KcRt6gic2JKawtrEr4AeQkpA+cxQmg0+ycl1ZfC6aEHO3vH2
 BuaEyQKBgQDQS/GEcfk08JRXcGdvvfTbdzzI3LWUplyPwJsaHDzUJaK9Uv91nprN
 77cETQt4A3XWAluzB/oLYG2yt8qgL/jXN9XHpQw8TSCoKZ2v0mDHF3U8pd47ilEi
 yTqUmux0Hw4KbKKyDLKgk2haJZ45pB7tpQh6xClC4UNOYjGvDsv4mA==
------END RSA PRIVATE KEY-----`)
+-----END RSA PRIVATE KEY-----`
 )
 
 var encAes = &aesEncryptFn{}
 var decAes = &aesDecryptFn{}
 var encRsa = &rsaEncryptFn{}
 var decRsa = &rsaDecryptFn{}
+var hmacSha512 = &hmacFn{}
 
 func TestAesEncryptDecrypt(t *testing.T) {
 	encryptedValue, _ := encAes.Eval(plaintext, key)
-
-	decryptedValue,_ := decAes.Eval(encryptedValue, key)
-    assert.Equal(t, plaintext, decryptedValue)
-
+	fmt.Println(encryptedValue)
+	decryptedValue, _ := decAes.Eval(encryptedValue, key)
+	fmt.Println(decryptedValue)
+	assert.Equal(t, plaintext, decryptedValue)
 
 }
 
-
 func TestRsaEncryptDecrypt(t *testing.T) {
 	encryptedValue, _ := encRsa.Eval(plaintext, pubKey)
+	fmt.Println(encryptedValue)
+	decryptedValue, _ := decRsa.Eval(encryptedValue, privateKey)
+	fmt.Println(decryptedValue)
+	assert.Equal(t, plaintext, decryptedValue)
 
-	decryptedValue,_ := decRsa.Eval(encryptedValue, privateKey)
-    assert.Equal(t, plaintext, decryptedValue)
+}
 
-
+func TestHmacSha512(t *testing.T) {
+	hash, _ := hmacSha512.Eval(plaintext, pubKey)
+	fmt.Println(hash)
 }
