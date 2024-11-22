@@ -6,7 +6,6 @@ import (
 	"github.com/project-flogo/core/data"
 	"github.com/project-flogo/core/data/coerce"
 	"github.com/project-flogo/core/data/expression/function"
-
 )
 
 func init() {
@@ -26,7 +25,6 @@ func (rsaDecryptFn) Sig() (paramTypes []data.Type, isVariadic bool) {
 	return []data.Type{data.TypeString, data.TypeString}, false
 }
 
-
 // Eval executes the function
 func (rsaDecryptFn) Eval(params ...interface{}) (interface{}, error) {
 
@@ -34,7 +32,7 @@ func (rsaDecryptFn) Eval(params ...interface{}) (interface{}, error) {
 		logger.Debugf("Entering function rsaDecrypt ()")
 	}
 
-	ciphertext, err := coerce.ToString(params[0])
+	ciphertextAsBase64, err := coerce.ToString(params[0])
 	if err != nil {
 		return nil, fmt.Errorf("crypto.rsaDecrypt function first parameter [%+v] must be string", params[0])
 	}
@@ -44,11 +42,15 @@ func (rsaDecryptFn) Eval(params ...interface{}) (interface{}, error) {
 		return nil, fmt.Errorf("crypto.rsaDecrypt function second parameter [%+v] must be string", params[1])
 	}
 
-	plaintext, err := rsaDecrypt([]byte(ciphertext), []byte(key))
+	ciphertext, err := decodeBase64(ciphertextAsBase64)
+	if err!= nil {
+        return nil, err
+    }
+
+	plaintext, err := rsaDecrypt(ciphertext, []byte(key))
 	if err != nil {
 		return nil, err
 	}
-
 
 	if logger.DebugEnabled() {
 		logger.Debugf("Exiting function rsaDecrypt()")
