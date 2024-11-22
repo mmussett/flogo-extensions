@@ -5,10 +5,35 @@
     "title": "crypto",
     "author": "Mark Mussett",
     "description": "Provides cryptographic functionality for Flogo",
-    "functions": [{
+    "functions": [
+        {
+            "name": "hmac",
+            "description": "Generate a HMAC-SHA",
+            "example": "crypto.aesEncrypt(\"Hello, World!\",\"1234543444555666\") => \"9FznkZO1UM3oYl+Gpac0lii/+a/4o9rTLlCInfA=\"",
+            "args": [
+                {
+                    "name": "string",
+                    "type": "string",
+                    "description": "The string to generate the HMAC-SHA"
+                },
+                {
+                    "name": "key",
+                    "type": "string",
+                    "description": "The encryption key"
+                }
+            ],
+            "return": {
+                "name": "hmac",
+                "type": "string"
+            },
+            "display": {
+                "visible": true
+            }
+        },
+        {
             "name": "aesEncrypt",
             "description": "Encrypt a string using AES encryption",
-            "example": "crypto.aesEncrypt()",
+            "example": "crypto.aesEncrypt(\"Hello, World!\",\"1234543444555666\") => \"9FznkZO1UM3oYl+Gpac0lii/+a/4o9rTLlCInfA=\"",
             "args": [
                 {
                     "name": "plainText",
@@ -32,7 +57,7 @@
         {
             "name": "aesDecrypt",
             "description": "Decrypt a string using AES decryption",
-            "example": "crypto.aesDecrypt()",
+            "example": "crypto.aesDecrypt(\"9FznkZO1UM3oYl+Gpac0lii/+a/4o9rTLlCInfA=\",\"1234543444555666\") => \"Hello, World!\"",
             "args": [
                 {
                     "name": "cipherText",
