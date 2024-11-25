@@ -34,12 +34,12 @@ func (hmacFn) Eval(params ...interface{}) (interface{}, error) {
 
 	value, err := coerce.ToString(params[0])
 	if err != nil {
-		return nil, fmt.Errorf("crypto.aesDecryptFn function first parameter [%+v] must be string", params[0])
+		return nil, fmt.Errorf("crypto.hmacFn function first parameter [%+v] must be string", params[0])
 	}
 
 	key, err := coerce.ToString(params[1])
 	if err != nil {
-		return nil, fmt.Errorf("crypto.aesDecryptFn function second parameter [%+v] must be string", params[1])
+		return nil, fmt.Errorf("crypto.hmacFn function second parameter [%+v] must be string", params[1])
 	}
 
 
