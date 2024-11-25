@@ -9,7 +9,7 @@
         {
             "name": "hmac",
             "description": "Generate a HMAC-SHA",
-            "example": "crypto.aesEncrypt(\"Hello, World!\",\"1234543444555666\") => \"9FznkZO1UM3oYl+Gpac0lii/+a/4o9rTLlCInfA=\"",
+            "example": "crypto.hmac(\"Hello, World!\",\"-----BEGIN PUBLIC KEY-----\") => \"9FznkZO1UM3oYl+Gpac0lii/+a/4o9rTLlCInfA=\"",
             "args": [
                 {
                     "name": "string",
