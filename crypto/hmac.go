@@ -9,7 +9,7 @@ import (
 )
 
 func init() {
-	_ = function.Register(&aesDecryptFn{})
+	_ = function.Register(&hmacFn{})
 }
 
 type hmacFn struct {
